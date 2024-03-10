@@ -9,9 +9,6 @@ export const App = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
 
-  console.log(contacts);
-  console.log(filter);
-
   useEffect(
     () => localStorage.setItem(CONTACTS_STORAGE_ITEM, JSON.stringify(contacts)),
     [contacts]

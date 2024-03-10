@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 
-import { CONTACTS_STORAGE_ITEM } from 'constants/constants';
-
-const contactsInitialState = JSON.parse(localStorage.getItem(CONTACTS_STORAGE_ITEM)) || [];
+const contactsInitialState = {
+  contacts: []
+};
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -11,7 +11,7 @@ const contactsSlice = createSlice({
   reducers: {
     addContact: {
       reducer(state, action) {
-        state.push(action.payload);
+        state.contacts.push(action.payload);
       },
       prepare(contact) {
         return {
@@ -23,8 +23,8 @@ const contactsSlice = createSlice({
       },
     },
     deleteContact(state, action) {
-      const index = state.findIndex(task => task.id === action.payload);
-      state.splice(index, 1);
+      const index = state.contacts.findIndex(task => task.id === action.payload);
+      state.contacts.splice(index, 1);
     },
   },
 });
